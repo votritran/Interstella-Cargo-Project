@@ -1,0 +1,160 @@
+<%- include('../template/head')-%>
+<title>Interstella Captain Page</title>
+<%- include('../template/header')-%>
+<%- include('../template/navcaptain')-%>
+</head>
+<body style="background-color: #53737c;">
+    <!--GET DATA TABLE-->
+    <div class="container mt-5 justify-content-center px-4 py-4 rounded-5" style="width: 600px; background-color: #b4cfd7;">
+        <div class="text-center">
+            <h4 class="cover-heading mb-4">Captain Data</h4>
+            <div class="container text-dark">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Ranks</th>
+                            <th>Home Planet</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%locals.data.forEach(function(captaindata) {%>
+                        <tr>
+                            <td><%=captaindata.firstname%></td>
+                            <td><%=captaindata.lastname%></td>
+                            <td><%=captaindata.ranks%></td>
+                            <td><%=captaindata.homeplanet%></td>
+                        </tr>
+                        <%});%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!--ADD CAPTAIN FORM-->
+    <div class="container mt-5 justify-content-center">
+        <div class="row justify-content-evenly">
+            <div class="col-2 px-4 py-4 rounded-5" style="width: 350px; background-color: #b4cfd7;">
+                <div class="text-center mb-4">
+                    <b>Add Captain</b>
+                </div>
+                <form id="addcaptain" action="/captainadd" method="post">
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text" >First Name</span>
+                        <input type="text" class="form-control" id="firstname" name="firstname" required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Last Name</span>
+                        <input type="text" class="form-control" id="lastname" name = "lastname" required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Rank</span>
+                        <select class="form-select" aria-label="Default select example" id="Rank" name ="Rank" required>
+                            <option selected>Select Rank</option>
+                            <option value="Not listed">Not Listed</option>
+                            <option value="Second Lieutenant">Second Lieutenant</option>
+                            <option value="First Lieutenant">First Lieutenant</option>
+                            <option value="Captain">Captain</option>
+                            <option value="Major">Major</option>
+                            <option value="Lt Colonel">Lt Colonel</option>
+                            <option value="Colonel">Colonel</option>
+                            <option value="General">General</option>
+                          </select>
+                          
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Home Planet</span>
+                        <input type="text" class="form-control" id="homeplanet" name="homeplanet" required>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-secondary">Add captain</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- UPDATE CAPTAIN FORM-->    
+            <div class="col-2 text-center px-4 py-4 rounded-5" style="width: 350px; background-color: #b4cfd7;">
+                <div class="text-center mb-4"><b>Update Captain</b>
+                </div>
+                <form id="updatecaptain" action="/updatecaptain" method="post">
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text" >Select First Name</span>
+                        <input type="text" class="form-control" id="captainfn" name="captainfn" required>
+                    </div>
+
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text" >Select Last Name</span>
+                        <input type="text" class="form-control" id="captainln" name="captainln" required>
+                    </div>
+                    <div class="text-center mb-4">
+                        <b>New Captain Info</b>
+                    </div>
+
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text" >First Name</span>
+                        <input type="text" class="form-control" id="ufirstname" name="ufirstname" required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Last Name</span>
+                        <input type="text" class="form-control" id="ulastname" name = "ulastname" required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Rank</span>
+                        <select class="form-select" aria-label="Default select example" id="uRank" name ="uRank" required>
+                            <option selected>Select Rank</option>
+                            <option value="Not listed">Not Listed</option>
+                            <option value="Second Lieutenant">Second Lieutenant</option>
+                            <option value="First Lieutenant">First Lieutenant</option>
+                            <option value="Captain">Captain</option>
+                            <option value="Major">Major</option>
+                            <option value="Lt Colonel">Lt Colonel</option>
+                            <option value="Colonel">Colonel</option>
+                            <option value="General">General</option>
+                          </select>
+                          
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Home Planet</span>
+                        <input type="text" class="form-control" id="uhomeplanet" name="uhomeplanet" required>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-secondary">Update captain</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!--DELETE CAPTAIN FORM-->
+    <div class="container mt-5 justify-content-center px-4 py-4 rounded-5" style="width: 350px; background-color: #b4cfd7;">
+        <div class="text-center mb-4">
+           <b>Delete data</b>
+        </div>
+        <form id="deletecaptain" action="/deletecaptain" method="post">
+            <div class=" input-group mb-3">
+                <span class="input-group-text" >Select First Name</span>
+                <input type="text" class="form-control" id="delete_first" name="delete_first" required>
+            </div>
+            <div class=" input-group mb-3">
+                <span class="input-group-text" >Select Last Name</span>
+                <input type="text" class="form-control" id="delete_last" name="delete_last" required>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-secondary">Delete captain</button>
+            </div>
+        </form>
+    </div>
+    
+
+
+
+</body>
+<%- include('../template/footer')-%>
+
+</html

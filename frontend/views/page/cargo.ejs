@@ -1,0 +1,165 @@
+<%- include('../template/head')-%>
+<title>Interstella Cargo Page</title>
+<%- include('../template/header')-%>
+<%- include('../template/navcargo')-%>
+</head>
+<body style="background-color: #53737c;">
+    <div class="container mt-5 justify-content-center px-4 py-4 rounded-5" style="width: 1000px; background-color: #b4cfd7;">
+        <div class="text-center">
+            <h4 class="cover-heading mb-4">Cargo Data</h4>
+            <div class="container text-dark">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Cargo ID</th>
+                            <th>Ship Name</th>
+                            <th>Cargo Type</th>
+                            <th>Weight</th>
+                            <th>Departure Date</th>
+                            <th>Arrival Date</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%locals.cargodata.forEach(function(cargodata) {%>
+                        <tr>
+                            <td><%=cargodata.cargo_id%></td>
+                            <td><%=cargodata.shipname%></td>
+                            <td><%=cargodata.cargotype%></td>
+                            <td><%=cargodata.weight%> Tons</td>
+                            <td><%=cargodata.departure%></td>
+                            <td><%=cargodata.arrival%></td>
+                        </tr>
+                        <%});%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+     <!--ADD CARGO FORM-->
+     <div class="container mt-5 justify-content-center">
+        <div class="row justify-content-evenly">
+            <div class="col-2 px-4 py-4 rounded-5" style="width: 350px; background-color: #b4cfd7;">
+                <div class="text-center mb-4">
+                    <b>Add Cargo</b>
+                </div>
+                <form id="addcargo" action="/addcargo" method="post">
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Cargo ID</span>
+                        <input type="text" class="form-control" id="cargoid" name = "cargoid" placeholder='Must be 6 digit' maxlength="6" style='text-transform: uppercase' required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Ship Name</span>
+                        <input type="text" class="form-control" id="shipname" name = "shipname" required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Cargo Type</span>
+                        <select class="form-select" aria-label="Default select example" id="cargotype" name ="cargotype" required>
+                            <option selected>Select size</option>
+                            <option value="Not listed">Not Listed</option>
+                            <option value="X-small">Extra Small</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">Extra Large</option>
+                          </select>
+                          
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Weight</span>
+                        <input type="number" class="form-control" id="weight" name="weight">
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Departure</span>
+                        <input type="date" class="form-control" id="departure" name="departure">
+                    </div>
+
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Arrival</span>
+                        <input type="date" class="form-control" id="arrival" name="arrival">
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-secondary">Add Cargo</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- UPDATE CARGO FORM-->    
+            <div class="col-2 text-center px-4 py-4 rounded-5" style="width: 350px; background-color: #b4cfd7;">
+                <div class="text-center mb-4"><b>Update Cargo</b>
+                </div>
+                <form id="updatecargo" action="/updatecargo" method="post">
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text" >Select Cargo ID</span>
+                        <input type="text" class="form-control" id="cargoid" name="cargoid" placeholder='Must be 6 digit' maxlength="6" style='text-transform: uppercase' required>
+                    </div>
+                    <div class="text-center mb-4">
+                        <b>New Cargo Info</b>
+                    </div>
+
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">New Ship Name</span>
+                        <input type="text" class="form-control" id="shipname" name = "shipname" required>
+                    </div>
+                    
+                    
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Cargo Type</span>
+                        <select class="form-select" aria-label="Default select example" id="cargotype" name ="cargotype" required>
+                            <option selected>Select size</option>
+                            <option value="Not listed">Not Listed</option>
+                            <option value="X-small">Extra Small</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">Extra Large</option>
+                          </select>
+                          
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">New Weight</span>
+                        <input type="number" class="form-control" id="weight" name = "weight" required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Departure</span>
+                        <input type="date" class="form-control" id="departure" name="departure">
+                    </div>
+
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Arrival</span>
+                        <input type="date" class="form-control" id="arrival" name="arrival">
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-secondary">Update Cargo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!--DELETE CARGO FORM-->
+    <div class="container mt-5 justify-content-center px-4 py-4 rounded-5" style="width: 350px; background-color: #b4cfd7;">
+        <div class="text-center mb-4">
+           <b>Delete Cargo</b>
+        </div>
+        <form id="deletecargo" action="/deletecargo" method="post">
+            <div class=" input-group mb-3">
+                <span class="input-group-text" >Cargo ID</span>
+                <input type="text" class="form-control" id="id_delete" name="id_delete" maxlength="6" style='text-transform: uppercase' placeholder ="Select Cargo ID" required>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-secondary">Delete Cargo</button>
+            </div>
+        </form>
+    </div>
+
+
+
+</body>
+<%- include('../template/footer')-%>
+</html

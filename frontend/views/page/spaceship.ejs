@@ -1,0 +1,133 @@
+<%- include('../template/head')-%>
+<title>Interstella Spaceship Page</title>
+<%- include('../template/header')-%>
+<%- include('../template/navspaceship')-%>
+</head>
+<body style="background-color: #53737c;">
+    <div class="container mt-5 justify-content-center px-4 py-4 rounded-5" style="width: 650px; background-color: #b4cfd7;">
+        <div class="text-center">
+            <h4 class="cover-heading mb-4">Spaceship Data</h4>
+            <div class="container text-dark">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Ship Name</th>
+                            <th>Captain First Name</th>
+                            <th>Captain Last Name</th>
+                            <th>Max Weight</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%locals.shipdata.forEach(function(spaceshipdata) {%>
+                        <tr>
+                            <td><%=spaceshipdata.shipname%></td>
+                            <td><%=spaceshipdata.captainfname%></td>
+                            <td><%=spaceshipdata.captainlname%></td>
+                            <td><%=spaceshipdata.maxweight%> Tons</td>
+                        </tr>
+                        <%});%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!--ADD CAPTAIN FORM-->
+    <div class="container mt-5 justify-content-center">
+        <div class="row justify-content-evenly">
+            <div class="col-2 px-4 py-4 rounded-5" style="width: 350px; background-color: #b4cfd7;">
+                <div class="text-center mb-4">
+                    <b>Add Spaceship</b>
+                </div>
+                <form id="addship" action="/shipadd" method="post">
+        
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Captain First Name</span>
+                        <input type="text" class="form-control" id="captainfname" name = "captainfname" required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Captain Last Name</span>
+                        <input type="text" class="form-control" id="captainlname" name = "captainlname" required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Ship Name</span>
+                        <input type="text" class="form-control" id="shipname" name = "shipname" required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Max Ship Weight</span>
+                        <input type="number" class="form-control" id="shipweight" name="shipweight" required>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-secondary">Add New Spaceship</button>
+                    </div>
+                </form>
+            </div>
+
+            <!--UPDATE SPACE SHIP--> 
+            <div class="col-2 text-center px-4 py-4 rounded-5" style="width: 350px; background-color: #b4cfd7;">
+                <div class="text-center mb-4"><b>Update Spaceship</b>
+                </div>
+                <form id="updateship" action="/updateship" method="post">
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text" >Select Ship Name</span>
+                        <input type="text" class="form-control" id="shipname" name="shipname" required>
+                    </div>
+                    <div class="text-center mb-4">
+                        <b>New Spaceship Info</b>
+                    </div>
+
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">New Ship Name</span>
+                        <input type="text" class="form-control" id="newshipname" name = "newshipname" required>
+                    </div>
+
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Captain First Name</span>
+                        <input type="text" class="form-control" id="captainfname" name = "captainfname" required>
+                    </div>
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Captain Last Name</span>
+                        <input type="text" class="form-control" id="captainlname" name = "captainlname" required>
+                    </div>
+                
+                    
+                    <div class=" input-group mb-3">
+                        <span class="input-group-text">Max Ship Weight</span>
+                        <input type="number" class="form-control" id="shipweight" name="shipweight" required>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-secondary">Update New Spaceship</button>
+                    </div>
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!--DELETE SPACESHIP FORM-->
+    <div class="container mt-5 justify-content-center px-4 py-4 rounded-5" style="width: 350px; background-color: #b4cfd7;">
+        <div class="text-center mb-4">
+           <b> Delete Spaceship</b>
+        </div>
+        <form id="deleteship" action="/deleteship" method="post">
+            <div class=" input-group mb-3">
+                <span class="input-group-text" >Spaceship Name</span>
+                <input type="text" class="form-control" id="id_delete" name="id_delete" required>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-secondary">Delete</button>
+            </div>
+        </form>
+    </div>
+
+
+
+</body>
+<%- include('../template/footer')-%>
+</html
